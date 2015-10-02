@@ -31,7 +31,7 @@ Test Page | w/o Gzip | w/ Gzip | w/ Gzip + Laravel HTML Minify
 1. Add `"fitztrev/laravel-html-minify": "1.*"` to **composer.json**.
 2. Run `composer update`
 3. Add `Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider` to the list of providers in **app/config/app.php**.
-4. `'LaravelHtmlMinify' => 'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider'` to the aliases in **app/config/app.php**.`
+4. `'LaravelHtmlMinify' => 'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider'` - put it to the aliases section in **app/config/app.php**.`
 5. **Important:** You won't see any changes until you edit your `*.blade.php` template files. Once Laravel detects a change, it will recompile them, which is when this package will go to work. To force all views to be recompiled, just run this command: `find . -name "*.blade.php" -exec touch {} \;`
 
 ## Config
