@@ -31,7 +31,8 @@ Test Page | w/o Gzip | w/ Gzip | w/ Gzip + Laravel HTML Minify
 1. Add `"fitztrev/laravel-html-minify": "1.*"` to **composer.json**.
 2. Run `composer update`
 3. Add `Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider` to the list of providers in **app/config/app.php**.
-4. **Important:** You won't see any changes until you edit your `*.blade.php` template files. Once Laravel detects a change, it will recompile them, which is when this package will go to work. To force all views to be recompiled, just run this command: `find . -name "*.blade.php" -exec touch {} \;`
+4. Add `'LaravelHtmlMinify' => 'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider'` to the aliases in **app/config/app.php**.`
+5. **Important:** You won't see any changes until you edit your `*.blade.php` template files. Once Laravel detects a change, it will recompile them, which is when this package will go to work. To force all views to be recompiled, just run this command: `find . -name "*.blade.php" -exec touch {} \;`
 
 ## Config
 
@@ -55,4 +56,17 @@ To prevent the minification of a view file, add `skipmin` somewhere in the view.
 ```
 {{-- skipmin --}}
 <!-- skipmin -->
+```
+
+### Extending
+You can easily extend the view engine the same way you extend the Blade engine, through the facade. This is required
+because the `LaravelHtmlMinifyCompiler` will actually replace the Blade engine and any extends and calls to it will
+not affect the output.
+
+Example:
+
+```php
+LaravelHtmlMinify::extend(function ($view, $compiler) {
+    // Do something here and return modified content
+});
 ```
